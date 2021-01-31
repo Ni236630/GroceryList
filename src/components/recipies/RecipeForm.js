@@ -33,7 +33,7 @@ export const RecipeForm = () => {
   const handleSaveRecipe = () => {
     
     addRecipe()
-      .then(history.push("./recipes"))
+      .then(history.push("/recipes"))
   }
   
   
@@ -42,43 +42,37 @@ export const RecipeForm = () => {
         <h2 className="recipeForm__title">New Recipe</h2>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="name">Recipe name:</label>
-            <input type="text" id="name" onChange={handleControlledInputChange}required autoFocus className="from-control" placeholder="Recipe name" value={recipe.name}/>
+            <label htmlFor="name">Recipe Name: </label>
+            <input type="text" id="name" onChange={handleControlledInputChange}required autoFocus className="from-control" placeholder="Recipe Name" value={recipe.name}/>
           </div>
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="instructions">instructions:</label>
-            <input type="textarea" id="instructions" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe instructions" value={recipe.instruction}/>
+            <label htmlFor="instructions">Instructions: </label>
+            <textarea type="text" id="instructions" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="specialNotes">Special Notes: </label>
+            <textarea type="text" id="instructions" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.specialNotes}/>
           </div>
         </fieldset>
         {/*
         <fieldset> 
               <div className="form-group">
-                  <label htmlFor="location">Assign to location: </label>
-                  <select value={animal.locationId} name="locationId" id="locationId" className="form-control"onChange={handleControlledInputChange} >
-                      <option value="0">Select a location</option>
-                      {locations.map(l => (
-                          <option key={l.id} value={l.id}>
-                              {l.name}
+                  <label htmlFor="ingredient">Ingredient: </label>
+                  <select value={ingredient.id} name="ingredientId" id="ingredientId" className="form-control"onChange={handleControlledInputChange} >
+                      <option value="0">Select an ingredient</option>
+                      {ingredients.map(i => (
+                          <option key={i.id} value={i.id}>
+                              {i.name}
                           </option>
                       ))}
                   </select>
               </div>
           </fieldset>
-          <fieldset>
-              <div className="form-group">
-                  <label htmlFor="customerId">Customer: </label>
-                  <select value={animal.customerId} name="customer" id="customerId" className="form-control" onChange={handleControlledInputChange}>
-                      <option value="0">Select a customer</option>
-                      {customers.map(c => (
-                          <option key={c.id} value={c.id}>
-                              {c.name}
-                          </option>
-                      ))}
-                  </select>
-              </div>
-                      </fieldset>*/}
+          */}
           <button className="btn btn-primary"
         
           onClick={event => {

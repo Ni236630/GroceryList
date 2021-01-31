@@ -19,7 +19,7 @@ export const RecipeDetail = () => {
       })
   },[])// eslint-disable-line react-hooks/exhaustive-deps
   
-  //TODO: add way to display ingredients from othert
+  //TODO: add way to display ingredients from other provider
   return(
     <section className="recipe">
       <h3 className="recipe__name">{recipe.name}</h3>
