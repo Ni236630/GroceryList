@@ -17,7 +17,7 @@ export const RecipeList = () => {
   return  (
     <>
    { console.log("RecipeList", recipes)}
-    <div className="recipeList__container">
+    <div className="recipeList__container recipe">
       {/*adds button to direct to form to add new recipe*/}
       <button onClick={()=> history.push("/recipes/add")}>Add New Recipe </button>
       {recipes.map(r => {

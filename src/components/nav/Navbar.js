@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import "./Navbar.css"
 
@@ -12,13 +12,15 @@ export const Navbar = ({open}, {setOpen}) => {
             return { transform: 'translateX(-100%)'}
         }
     }
+    const close = () => setOpen
+    //TODO: figure out how to fix closing of menu on click
     return (
     <>
      
         <div className="navbar__container menu" style={openClose(open)}>
         <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/">Home</Link>
+            <li className="navbar__item active" >
+                <Link className="navbar__link" to="/" onClick={close}>Home</Link>
             </li>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/recipes">Recipes</Link>

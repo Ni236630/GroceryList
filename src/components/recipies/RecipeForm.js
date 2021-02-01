@@ -43,50 +43,52 @@ export const RecipeForm = () => {
   
   
   return (
-    <form className="recipeForm">
-        <h2 className="recipeForm__title">New Recipe</h2>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="name">Recipe Name: </label>
-            <input type="text" id="name" onChange={handleControlledInputChange}required autoFocus className="from-control" placeholder="Recipe Name" value={recipe.name}/>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="instructions">Instructions: </label>
-            <textarea type="text" id="instruction" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
-          </div>
-        </fieldset>
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="specialNotes">Special Notes: </label>
-            <textarea type="text" id="specialNotes" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Notes" value={recipe.specialNotes}/>
-          </div>
-        </fieldset>
-        {/*
-        <fieldset> 
-              <div className="form-group">
-                  <label htmlFor="ingredient">Ingredient: </label>
-                  <select value={ingredient.id} name="ingredientId" id="ingredientId" className="form-control"onChange={handleControlledInputChange} >
-                      <option value="0">Select an ingredient</option>
-                      {ingredients.map(i => (
-                          <option key={i.id} value={i.id}>
-                              {i.name}
-                          </option>
-                      ))}
-                  </select>
-              </div>
+    <div className="recipe__form recipe">
+      <form className="recipeForm">
+          <h2 className="recipeForm__title">New Recipe</h2>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="name">Recipe Name: </label>
+              <input type="text" id="name" onChange={handleControlledInputChange}required autoFocus className="from-control" placeholder="Recipe Name" value={recipe.name}/>
+            </div>
           </fieldset>
-          */}
-          <button className="btn btn-primary"
-        
-          onClick={event => {
-            event.preventDefault() // Prevent browser from submitting the form and refreshing the page
-            handleSaveRecipe()
-          }}>
-        Save Recipe</button>
-         
-      </form>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="instructions">Instructions: </label>
+              <textarea type="text" id="instruction" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="specialNotes">Special Notes: </label>
+              <textarea type="text" id="specialNotes" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Notes" value={recipe.specialNotes}/>
+            </div>
+          </fieldset>
+          {/*
+          <fieldset> 
+                <div className="form-group">
+                    <label htmlFor="ingredient">Ingredient: </label>
+                    <select value={ingredient.id} name="ingredientId" id="ingredientId" className="form-control"onChange={handleControlledInputChange} >
+                        <option value="0">Select an ingredient</option>
+                        {ingredients.map(i => (
+                            <option key={i.id} value={i.id}>
+                                {i.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </fieldset>
+            */}
+            <button className="btn btn-primary"
+          
+            onClick={event => {
+              event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+              handleSaveRecipe()
+            }}>
+          Save Recipe</button>
+           
+        </form>
+    </div>
   )
 }
 
