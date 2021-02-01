@@ -11,13 +11,15 @@ export const Home = () =>{
   useOnClickOutside(node, ()=> setOpen(false))
    const [ open, setOpen] = useState(false)
   
-  return  <div ref={node}>
+  return  <div className="container" >
     <div open={open} onClick={()=> setOpen(!open)} className="menu__button--container">
       <div className='menu__button'></div>
       <div className='menu__button'></div>
       <div className='menu__button'></div>
     </div>
+    <div className='container__views'ref={node}>
       <Navbar open={open} setOpen={setOpen} />
+    </div>
       <ApplicationViews open={open} setOpen={setOpen}/>
     </div>
   

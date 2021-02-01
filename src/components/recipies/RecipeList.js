@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react'
 import { RecipeContext } from './RecipeProvider'
 import { RecipeCard } from './RecipeCard'
 import { useHistory } from 'react-router-dom'
+import './Recipe.css'
 
 export const RecipeList = () => {
   //receiving usable functions and state variable from provider

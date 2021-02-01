@@ -6,9 +6,14 @@ body {
   padding: 0;
 }
 
+.container{
+  display:flex;
+  height: 100vh;
+}
 .menu__button--container{
   position: relative;
   top: 1.5rem;
+  left: 1.5rem;
   
 }
 
