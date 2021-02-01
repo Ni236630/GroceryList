@@ -15,7 +15,7 @@ export const RecipeForm = () => {
     name:"",
     userId:0,
     instruction:"",
-    specialNotes:"",
+    specialNotes:""
   })
   
   
@@ -29,10 +29,15 @@ export const RecipeForm = () => {
     newRecipe[event.target.id] = event.target.value
     setRecipe(newRecipe)
   }
-  //TODO need to add ingredient save access
+  //TODO need to add ingredient save access and local storage for user!
   const handleSaveRecipe = () => {
     
-    addRecipe()
+    addRecipe({
+      name:recipe.name,
+    userId:0,
+    instruction:recipe.instruction,
+    specialNotes:recipe.specialNotes
+    })
       .then(history.push("/recipes"))
   }
   
@@ -49,13 +54,13 @@ export const RecipeForm = () => {
         <fieldset>
           <div className="form-group">
             <label htmlFor="instructions">Instructions: </label>
-            <textarea type="text" id="instructions" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
+            <textarea type="text" id="instruction" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
           </div>
         </fieldset>
         <fieldset>
           <div className="form-group">
             <label htmlFor="specialNotes">Special Notes: </label>
-            <textarea type="text" id="instructions" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.specialNotes}/>
+            <textarea type="text" id="specialNotes" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Notes" value={recipe.specialNotes}/>
           </div>
         </fieldset>
         {/*
