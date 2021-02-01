@@ -6,6 +6,7 @@ import './Recipe.css'
 
 export const RecipeList = () => {
   //receiving usable functions and state variable from provider
+
   const { recipes, getRecipes } = useContext(RecipeContext)
   const history = useHistory()
   //initial render for mounting
