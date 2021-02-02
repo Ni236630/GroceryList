@@ -7,7 +7,7 @@ import "./Recipe.css"
 export const RecipeForm = () => {
   
   //pulling addRecipe function from provider
-  const { addRecipe,getRecipes } = useContext(RecipeContext)
+  const { recipes,addRecipe,getRecipes } = useContext(RecipeContext)
   
   const { addIngredient, getIngredients } = useContext(IngredientContext)
   
@@ -46,16 +46,25 @@ export const RecipeForm = () => {
   }
   //TODO need to add ingredient save access and local storage for user!
   const handleSaveRecipe = () => {
-    addIngredient({
-      name:ingredient.name,
-      recipeId:recipe.id
-    })
     addRecipe({
       name:recipe.name,
       userId:0,
       instruction:recipe.instruction,
       specialNotes:recipe.specialNotes
     })
+    //TODO: get this to work!!!
+      .then(()=>{
+        getRecipes()
+          .then(
+            recipes.find(r =>{
+              if(recipe.name === r.name){
+               return  addIngredient({
+                  name:ingredient.name,
+                  recipeId:r.id
+                })
+              }})
+          )
+      })
       .then(history.push("/recipes"))
   }
   

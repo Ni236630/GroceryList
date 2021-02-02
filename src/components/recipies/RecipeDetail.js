@@ -36,6 +36,10 @@ export const RecipeDetail = () => {
         <h4>Instructions</h4>
         {recipe.instruction}
       </div>
+      <div className="recipe__specialNotes">
+        <h4>Special Notes</h4>
+        **{recipe.specialNotes}
+      </div>
     </section>
   );
 };
