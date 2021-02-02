@@ -25,7 +25,7 @@ export const Navbar = ({open}, {setOpen}) => {
                 <Link className="navbar__link" to="/">Home</Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/recipes">Recipes</Link>
+                <Link className="navbar__link" to="/recipes" >Recipes</Link>
             </li>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/grocerylists">Grocery Lists</Link>

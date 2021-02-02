@@ -4,12 +4,13 @@ import { ApplicationViews } from "./ApplicationViews";
 //import { useOnClickOutside } from './CloseMenu'
 import './Home.css'
 
-
+// the below comments are for adding a off element click
+//ref={node} <-- added on container__views
 // useOnClickOutside(node, ()=> setOpen(false))
-
+//const node = useRef()
 export const Home = () =>{
   const [ open, setOpen] = useState(false)
-  const node = useRef()
+  
   
   return  <div className="container" >
     
@@ -20,7 +21,7 @@ export const Home = () =>{
       <div className='menu__button'></div>
     </span>
     
-    <div className='container__views'ref={node}>
+    <div className='container__views'>
       <Navbar open={open} setOpen={setOpen} />
     </div>
       <ApplicationViews open={open} setOpen={setOpen}/>

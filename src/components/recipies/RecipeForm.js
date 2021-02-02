@@ -57,7 +57,7 @@ export const RecipeForm = () => {
         console.log(newRecipe)
              addIngredient({
                   name:ingredient.name,
-                  recipeId:newRecipe.id
+                  recipesId:newRecipe.id
                 })
               
           
@@ -68,6 +68,7 @@ export const RecipeForm = () => {
   
   return (
     <div className="recipe__form recipe">
+      <button onClick={()=> history.push("/recipes")}>back</button>
       <form className="recipeForm">
           <h2 className="recipeForm__title">New Recipe</h2>
           <fieldset>
