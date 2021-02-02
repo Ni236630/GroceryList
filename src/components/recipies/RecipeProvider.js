@@ -30,7 +30,6 @@ export const RecipeProvider = (props) => {
     })
       .then((newRes)=>newRes.json())
       .then(recipe => {
-        console.log(recipe)
         getRecipes()
         return recipe
       })

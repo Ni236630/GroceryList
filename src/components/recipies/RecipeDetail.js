@@ -33,6 +33,7 @@ export const RecipeDetail = () => {
          if (i.recipesId === recipe.id) {
           return <IngredientCard key={i.id} ingredient={i} />;
         }
+       return  <IngredientCard key={i.id} ingredient={i}/>
       })}
       <div className="recipe__instructions">
         <h4>Instructions</h4>

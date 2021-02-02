@@ -7,7 +7,7 @@ import "./Recipe.css"
 export const RecipeForm = () => {
   
   //pulling addRecipe function from provider
-  const { recipes,addRecipe,getRecipes } = useContext(RecipeContext)
+  const { addRecipe,getRecipes } = useContext(RecipeContext)
   
   const { addIngredient, getIngredients } = useContext(IngredientContext)
   
