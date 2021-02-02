@@ -6,6 +6,11 @@ export const GroceryListProvider = (props) => {
  
   const [grocerylists, setGrocerylist] = useState([])
   
+  const getGroceryListById = (id) => {
+    return fetch(`http://localhost:8088/grocerylists/${id}`)
+      .then(res => res.json())
+  }
+  
   const getGroceryLists = () => {
     return fetch('http://localhost:8088/grocerylists')
       .then(res => res.json())
@@ -24,7 +29,7 @@ export const GroceryListProvider = (props) => {
   
   return (
     <GroceryListContext.Provider value={{
-      grocerylists, getGroceryLists, addGroceryList 
+      grocerylists, getGroceryLists, addGroceryList, getGroceryListById 
     }}>
       {props.children}
     </GroceryListContext.Provider>
