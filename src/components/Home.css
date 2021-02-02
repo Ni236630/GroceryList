@@ -14,7 +14,8 @@ body {
   position: relative;
   top: 1.5rem;
   left: 1.5rem;
-  
+  z-index: 1;
+  height: 1.5rem;
 }
 
 .menu__button{

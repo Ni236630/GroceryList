@@ -28,7 +28,12 @@ export const RecipeProvider = (props) => {
       },
       body: JSON.stringify(recipeObj)
     })
-      .then(getRecipes)
+      .then((newRes)=>newRes.json())
+      .then(recipe => {
+        console.log(recipe)
+        getRecipes()
+        return recipe
+      })
       
   }
   

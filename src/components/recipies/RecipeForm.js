@@ -53,17 +53,14 @@ export const RecipeForm = () => {
       specialNotes:recipe.specialNotes
     })
     //TODO: get this to work!!!
-      .then(()=>{
-        getRecipes()
-          .then(
-            recipes.find(r =>{
-              if(recipe.name === r.name){
-               return  addIngredient({
+      .then((newRecipe)=>{
+        console.log(newRecipe)
+             addIngredient({
                   name:ingredient.name,
-                  recipeId:r.id
+                  recipesId:newRecipe.id
                 })
-              }})
-          )
+              
+          
       })
       .then(history.push("/recipes"))
   }
@@ -71,6 +68,7 @@ export const RecipeForm = () => {
   
   return (
     <div className="recipe__form recipe">
+      <button onClick={()=> history.push("/recipes")}>back</button>
       <form className="recipeForm">
           <h2 className="recipeForm__title">New Recipe</h2>
           <fieldset>

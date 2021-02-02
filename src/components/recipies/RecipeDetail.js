@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 import "./Recipe.css";
 import { IngredientCard } from "../ingredients/IngredientCard";
 
+
 export const RecipeDetail = () => {
   const { ingredients, getIngredients } = useContext(IngredientContext);
   const { getRecipeById } = useContext(RecipeContext);
@@ -12,7 +13,7 @@ export const RecipeDetail = () => {
   const [recipe, setRecipe] = useState({});
   const { recipeId } = useParams();
 
-  //TODO: add button/icon to go back to recipes
+
   const history = useHistory();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export const RecipeDetail = () => {
   //TODO: add way to display sort ingredients by alphabetical order
   return (
     <section className="recipe">
+       <button onClick={()=> history.push("/recipes")}>back</button>
       <h3 className="recipe__name">{recipe.name}</h3>
       <h4>Ingredients</h4>
       {ingredients.map((i) => {
