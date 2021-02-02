@@ -53,17 +53,14 @@ export const RecipeForm = () => {
       specialNotes:recipe.specialNotes
     })
     //TODO: get this to work!!!
-      .then(()=>{
-        getRecipes()
-          .then(
-            recipes.find(r =>{
-              if(recipe.name === r.name){
-               return  addIngredient({
+      .then((newRecipe)=>{
+        console.log(newRecipe)
+             addIngredient({
                   name:ingredient.name,
-                  recipeId:r.id
+                  recipeId:newRecipe.id
                 })
-              }})
-          )
+              
+          
       })
       .then(history.push("/recipes"))
   }
