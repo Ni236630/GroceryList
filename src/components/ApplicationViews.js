@@ -10,10 +10,10 @@ export const ApplicationViews = () => {
   return (
     <>
       <RecipeProvider>
-        <Route exact path="/recipes/add">
-          <RecipeForm />
-        </Route>
         <IngredientProvider>
+          <Route exact path="/recipes/add">
+            <RecipeForm />
+          </Route>
           <Route exact path="/recipes/detail/:recipeId(\d+)">
             <RecipeDetail />
           </Route>

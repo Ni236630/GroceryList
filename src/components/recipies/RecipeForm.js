@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import {IngredientContext} from '../ingredients/IngredientProvider'
 import {RecipeContext} from './RecipeProvider'
 import { useHistory } from 'react-router-dom'
 import "./Recipe.css"
@@ -7,6 +8,8 @@ export const RecipeForm = () => {
   
   //pulling addRecipe function from provider
   const { addRecipe,getRecipes } = useContext(RecipeContext)
+  
+  const { addIngredient, getIngredients } = useContext(IngredientContext)
   
   const history = useHistory()
   
@@ -18,9 +21,15 @@ export const RecipeForm = () => {
     specialNotes:""
   })
   
+  const [ingredient, setIngredients] = useState({
+    name: "",
+    recipeId: 0
+  })
+  
   
   useEffect(()=>{
     getRecipes()
+      .then(getIngredients)
   },[])// eslint-disable-line react-hooks/exhaustive-deps
   
   //controlled component allowing us to update on field changes
@@ -29,14 +38,23 @@ export const RecipeForm = () => {
     newRecipe[event.target.id] = event.target.value
     setRecipe(newRecipe)
   }
+  // allow use to update on field change for the ingregient
+  const handleControlledInputChangeIngredient = (event) => {
+    const newIngredient = {...ingredient}
+    newIngredient[event.target.id] = event.target.value
+    setIngredients(newIngredient)
+  }
   //TODO need to add ingredient save access and local storage for user!
   const handleSaveRecipe = () => {
-    
+    addIngredient({
+      name:ingredient.name,
+      recipeId:recipe.id
+    })
     addRecipe({
       name:recipe.name,
-    userId:0,
-    instruction:recipe.instruction,
-    specialNotes:recipe.specialNotes
+      userId:0,
+      instruction:recipe.instruction,
+      specialNotes:recipe.specialNotes
     })
       .then(history.push("/recipes"))
   }
@@ -54,31 +72,22 @@ export const RecipeForm = () => {
           </fieldset>
           <fieldset>
             <div className="form-group">
+              <label htmlFor="instructions">ingredient: </label>
+              <input type="text" id="name" onChange={handleControlledInputChangeIngredient}required className="from-control" placeholder="Ingredient Name" value={ingredient.name}/>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="form-group">
               <label htmlFor="instructions">Instructions: </label>
-              <textarea type="text" id="instruction" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
+              <textarea type="text" id="instruction" cols="45" rows="10" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Instructions" value={recipe.instruction}/>
             </div>
           </fieldset>
           <fieldset>
             <div className="form-group">
               <label htmlFor="specialNotes">Special Notes: </label>
-              <textarea type="text" id="specialNotes" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Notes" value={recipe.specialNotes}/>
+              <textarea type="text" id="specialNotes" cols="45"rows="5" onChange={handleControlledInputChange}required className="from-control" placeholder="Recipe Notes" value={recipe.specialNotes}/>
             </div>
           </fieldset>
-          {/*
-          <fieldset> 
-                <div className="form-group">
-                    <label htmlFor="ingredient">Ingredient: </label>
-                    <select value={ingredient.id} name="ingredientId" id="ingredientId" className="form-control"onChange={handleControlledInputChange} >
-                        <option value="0">Select an ingredient</option>
-                        {ingredients.map(i => (
-                            <option key={i.id} value={i.id}>
-                                {i.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            </fieldset>
-            */}
             <button className="btn btn-primary"
           
             onClick={event => {
