@@ -9,7 +9,7 @@ import { IngredientCard } from "../ingredients/IngredientCard";
 
 export const GroceryDetail = () => {
   //getting all the information required for this
-  const { recipes, getRecipeById, getRecipes } = useContext(RecipeContext);
+  const {  getRecipes } = useContext(RecipeContext);
   const { ingredients, getIngredients } = useContext(IngredientContext);
   const { getGroceryListById } = useContext(GroceryListContext);
   const { jointList, getGroceryRecipeJoin } = useContext(
@@ -29,7 +29,15 @@ export const GroceryDetail = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+//  let ingredientList =[]
+//  let foundList = jointList.find((l)=>l.grocerylistsId === parseInt(listId))
  
+//    for (let i  in ingredients ){
+//     if (  i.recipesId === foundList.recipesId){
+//     return  ingredientList.push(i)
+//     }
+//     console.log(ingredientList)
+//  }
 
   return (
     <>
@@ -39,16 +47,16 @@ export const GroceryDetail = () => {
         <div>
           {
             //maybe use find method instead??
+          
             jointList.map((l) => {
               if (l.grocerylistsId === parseInt(listId)) {
                 let hello = ingredients
                   .filter((i) => i.recipesId === l.recipesId)
+                  //sorts in alpha order (supposed to)
                   .sort((a, b) => a.name.localeCompare(b.name))
-                  .map((i) => {
-                    return <IngredientCard key={i.id} ingredient={i} />;
-                  });
-                console.log(hello);
-                return hello;
+              
+                 return  hello.map((i) =>  <IngredientCard key={i.id} ingredient={i} />);
+             
               }
             })
           }
