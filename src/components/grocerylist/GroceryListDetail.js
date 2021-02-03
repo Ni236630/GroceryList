@@ -1,45 +1,59 @@
-import React, {useEffect, useState, useContext }from 'react'
-import { GroceryListContext } from './GroceryProvider'
-import { IngredientContext } from '../ingredients/IngredientProvider'
-import { RecipeContext  } from '../recipies/RecipeProvider'
-import { useHistory, useParams } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import { GroceryListContext } from "./GroceryProvider";
+import { IngredientContext } from "../ingredients/IngredientProvider";
+import { GroceryListRecipeContext } from "../grocerylistrecipe/GroceryListRecipe";
+import { RecipeContext } from "../recipies/RecipeProvider";
+import "../recipies/Recipe.css";
+import { IngredientCard } from "../ingredients/IngredientCard";
 
 export const GroceryDetail = () => {
-  const { recipes, getRecipeById }= useContext(RecipeContext)
-  const { ingredients, getIngredients } = useContext(IngredientContext)
-  const { groceryList, getGroceryListById } = useContext(GroceryListContext)
-  
-  const [list, setList] = useState({})
-  const { listId } = useParams()
-  const history = useHistory()
-  
-  useEffect(()=>{
-    getIngredients()
-    getGroceryListById(listId)
-      .then(res=> {
-        setList(res)
-      })
-  },[])// eslint-disable-line react-hooks/exhaustive-deps
-  
-  return(
-    <section className="groceryList">
-       <button onClick={()=> history.push("/grocerylists")}>back</button>
-      <h3 className="grocerylist__name">{groceryList.name}</h3>
-      
-      {ingredients.map((i) => {
-         if (i.recipesId === recipe.id) {
-          return <IngredientCard key={i.id} ingredient={i} />;
-        }
-       return  <IngredientCard key={i.id} ingredient={i}/>
-      })}
-      <div className="recipe__instructions">
-        <h4>Instructions</h4>
-        {recipe.instruction}
+  //getting all the information required for this
+  const { recipes, getRecipeById, getRecipes } = useContext(RecipeContext);
+  const { ingredients, getIngredients } = useContext(IngredientContext);
+  const { getGroceryListById } = useContext(GroceryListContext);
+  const { jointList, getGroceryRecipeJoin } = useContext(
+    GroceryListRecipeContext
+  );
+
+  const [list, setList] = useState({});
+  const { listId } = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    getGroceryRecipeJoin();
+    getRecipes();
+    getIngredients();
+    getGroceryListById(listId).then((res) => {
+      setList(res);
+    });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+ 
+
+  return (
+    <>
+      <div className="groceryList recipe">
+        <button onClick={() => history.push("/grocerylists")}>back</button>
+        <h3 className="grocerylist__name">{list.name}</h3>
+        <div>
+          {
+            //maybe use find method instead??
+            jointList.map((l) => {
+              if (l.grocerylistsId === parseInt(listId)) {
+                let hello = ingredients
+                  .filter((i) => i.recipesId === l.recipesId)
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((i) => {
+                    return <IngredientCard key={i.id} ingredient={i} />;
+                  });
+                console.log(hello);
+                return hello;
+              }
+            })
+          }
+        </div>
       </div>
-      <div className="recipe__specialNotes">
-        <h4>Special Notes</h4>
-        **{recipe.specialNotes}
-      </div>
-    </section>
-  )
-}
+    </>
+  );
+};
