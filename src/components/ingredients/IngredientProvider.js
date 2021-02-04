@@ -14,7 +14,9 @@ export const IngredientProvider = (props) =>{
   }
   
   const deleteIngredient = (ingredientId) =>{
-    return fetch(`http://localhost:8088/${ingredientId}`)
+    return fetch(`http://localhost:8088/${ingredientId}`,{
+      method:'DELETE'
+    })
       .then(getIngredients)
   }
   
