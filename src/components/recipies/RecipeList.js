@@ -13,6 +13,8 @@ export const RecipeList = () => {
   useEffect(()=>{
     getRecipes()
   },[])// eslint-disable-line react-hooks/exhaustive-deps
+ 
+  
   
   //returning single object
   return  (
@@ -21,8 +23,7 @@ export const RecipeList = () => {
       {/*adds button to direct to form to add new recipe*/}
       <button onClick={()=> history.push("/recipes/add")}>Add New Recipe </button>
       {recipes.map(r => {
-        return <RecipeCard key={r.id} recipe={r} />
-      })}
+        return  <RecipeCard key={r.id} recipe={r} />  })}
     </div>
     </>
   )

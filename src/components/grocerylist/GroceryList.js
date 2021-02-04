@@ -5,7 +5,7 @@ import { GroceryCard } from './GroceryCard'
 import '../recipies/Recipe.css'
 
 export const GroceryList = () => {
-  
+ 
   const {grocerylists, getGroceryLists} = useContext(GroceryListContext)
   
   
@@ -13,6 +13,8 @@ export const GroceryList = () => {
   useEffect(() =>{
     getGroceryLists()
   },[])// eslint-disable-line react-hooks/exhaustive-deps
+  
+ 
   return (
     <>
       <div className="GroceryList__container recipe">
@@ -22,7 +24,7 @@ export const GroceryList = () => {
         
       {grocerylists.map(gl => {
         return <li key={gl.id}>
-          <GroceryCard key={gl.id} groceryList={gl} /></li>
+          <GroceryCard key={gl.id} groceryList={gl} /> </li>
       })}
       </ul>
     </div>

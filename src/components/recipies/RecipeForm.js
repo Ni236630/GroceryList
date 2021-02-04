@@ -48,7 +48,7 @@ export const RecipeForm = () => {
   const handleSaveRecipe = () => {
     addRecipe({
       name:recipe.name,
-      userId:0,
+      userId:1,
       instruction:recipe.instruction,
       specialNotes:recipe.specialNotes
     })

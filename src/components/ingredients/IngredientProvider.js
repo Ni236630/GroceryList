@@ -13,6 +13,11 @@ export const IngredientProvider = (props) =>{
       .then(setIngredients) 
   }
   
+  const deleteIngredient = (ingredientId) =>{
+    return fetch(`http://localhost:8088/${ingredientId}`)
+      .then(getIngredients)
+  }
+  
   const addIngredient = (ingredientObj) => {
     return fetch ('http://localhost:8088/ingredients',{
       method: 'POST',
@@ -25,7 +30,7 @@ export const IngredientProvider = (props) =>{
   }
   return (
     <IngredientContext.Provider value={{
-      ingredients, getIngredients, addIngredient
+      ingredients, getIngredients, addIngredient, deleteIngredient
     }}>
       {props.children}
     </IngredientContext.Provider>

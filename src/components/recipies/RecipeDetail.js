@@ -5,16 +5,30 @@ import { useParams, useHistory } from "react-router-dom";
 import "./Recipe.css";
 import { IngredientCard } from "../ingredients/IngredientCard";
 
-
 export const RecipeDetail = () => {
-  const { ingredients, getIngredients } = useContext(IngredientContext);
-  const { getRecipeById } = useContext(RecipeContext);
+  const { deleteIngredient, ingredients, getIngredients } = useContext(
+    IngredientContext
+  );
+  const { deleteRecipe, getRecipeById } = useContext(RecipeContext);
 
   const [recipe, setRecipe] = useState({});
   const { recipeId } = useParams();
-
+  const { ingredientId } = useParams();
 
   const history = useHistory();
+
+  //TODO:add deletion of ingredients as well.
+  const handleDelete = () => {
+    return deleteRecipe(recipeId)
+      .then(() => {
+        ingredients.map((i) => {
+          if (i.recipesId === recipe.id) {
+            return deleteIngredient(ingredientId);
+          }
+        });
+      })
+      .then(() => history.push("/recipes"));
+  };
 
   useEffect(() => {
     getIngredients();
@@ -26,14 +40,21 @@ export const RecipeDetail = () => {
   //TODO: add way to display sort ingredients by alphabetical order
   return (
     <section className="recipe">
-       <button onClick={()=> history.push("/recipes")}>back</button>
+      <button onClick={() => history.push("/recipes")}>back</button>
+      <button
+        onClick={() => {
+          handleDelete();
+        }}
+      >
+        Delete
+      </button>
       <h3 className="recipe__name">{recipe.name}</h3>
       <h4>Ingredients</h4>
       {ingredients.map((i) => {
-         if (i.recipesId === recipe.id) {
+        if (i.recipesId === recipe.id) {
           return <IngredientCard key={i.id} ingredient={i} />;
         }
-       return  <IngredientCard key={i.id} ingredient={i}/>
+        return <IngredientCard key={i.id} ingredient={i} />;
       })}
       <div className="recipe__instructions">
         <h4>Instructions</h4>
