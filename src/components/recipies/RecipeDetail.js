@@ -17,7 +17,7 @@ export const RecipeDetail = () => {
 
   const history = useHistory();
 
-  //TODO:add deletion of ingredients as well.
+  
   const handleDelete = () => {
     return deleteRecipe(recipeId)
       .then(() => {
@@ -52,9 +52,11 @@ export const RecipeDetail = () => {
       <h4>Ingredients</h4>
       {ingredients.map((i) => {
         if (i.recipesId === recipe.id) {
-          return <IngredientCard key={i.id} ingredient={i} />;
+          return  <IngredientCard key={i.id} ingredient={i} />
+        }else{
+          return
         }
-        return <IngredientCard key={i.id} ingredient={i} />;
+      
       })}
       <div className="recipe__instructions">
         <h4>Instructions</h4>
