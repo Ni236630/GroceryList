@@ -29,15 +29,7 @@ export const GroceryDetail = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-//  let ingredientList =[]
-//  let foundList = jointList.find((l)=>l.grocerylistsId === parseInt(listId))
- 
-//    for (let i  in ingredients ){
-//     if (  i.recipesId === foundList.recipesId){
-//     return  ingredientList.push(i)
-//     }
-//     console.log(ingredientList)
-//  }
+
 
   return (
     <>
@@ -46,16 +38,15 @@ export const GroceryDetail = () => {
         <h3 className="grocerylist__name">{list.name}</h3>
         <div>
           {
-            //maybe use find method instead??
+            //maybe use concat before sort, but where?
           
             jointList.map((l) => {
-              if (l.grocerylistsId === parseInt(listId)) {
+              if (l.grocerylistsId === parseInt(listId)){
                 let hello = ingredients
-                  .filter((i) => i.recipesId === l.recipesId)
-                  //sorts in alpha order (supposed to)
+                  .filter((i) => i.recipesId === l.recipesId )
                   .sort((a, b) => a.name.localeCompare(b.name))
               
-                 return  hello.map((i) =>  <IngredientCard key={i.id} ingredient={i} />);
+                 return hello.map((i) => <IngredientCard key={i.id} ingredient={i} />);
              
               }
             })
