@@ -36,7 +36,7 @@ export const RecipeDetail = () => {
       setRecipe(res);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+console.log("hello from details",recipe.id)
   //TODO: add way to display sort ingredients by alphabetical order
   return (
     <section className="recipe">
@@ -51,10 +51,12 @@ export const RecipeDetail = () => {
       <h3 className="recipe__name">{recipe.name}</h3>
       <h4>Ingredients</h4>
       {ingredients.map((i) => {
-        if (i.recipesId === recipeId) {
-          return  <IngredientCard key={i.id} ingredient={i} />;
+        if (i.recipesId === recipe.id) {
+          return  <IngredientCard key={i.id} ingredient={i} />
+        }else{
+          return
         }
-        return <IngredientCard key={i.id} ingredient={i} />;
+      
       })}
       <div className="recipe__instructions">
         <h4>Instructions</h4>
