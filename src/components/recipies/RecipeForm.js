@@ -188,8 +188,6 @@ export const RecipeForm = () => {
         >
           Save Recipe
         </button>
-        <pre>{JSON.stringify(ingredients, null, 2)}</pre>
-    
     </div>
   );
 };
