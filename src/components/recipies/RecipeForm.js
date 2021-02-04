@@ -74,7 +74,6 @@ export const RecipeForm = () => {
       specialNotes: recipe.specialNotes,
     })
       .then((newRecipe) => {
-        console.log(newRecipe);
         ingredients.forEach((ingredient)=>{
           addIngredient({
             name: ingredient.name,
@@ -84,12 +83,7 @@ export const RecipeForm = () => {
       })
       .then(history.push("/recipes"));
   };
-  //  <fieldset>
-  //           <div className="form-group">
-  //             <label htmlFor="instructions">ingredient: </label>
-  //             <input type="text" id="name" onChange={handleControlledInputChangeIngredient}required className="from-control" placeholder="Ingredient Name" value={ingredient.name}/>
-  //           </div>
-  //         </fieldset>
+ 
   //TODO: add ability to generate more ingredients
   return (
     <div className="recipe__form recipe">
@@ -112,7 +106,6 @@ export const RecipeForm = () => {
           </div>
         </fieldset>
         <fieldset>
-          {console.log(ingredients)}
          {ingredients.map((ingredient, index) => (
             <Fragment key={`${ingredient}~${index}`}>
               <div className="form-group ">
