@@ -36,7 +36,7 @@ export const RecipeDetail = () => {
       setRecipe(res);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-console.log("hello from details",recipe.id)
+
   //TODO: add way to display sort ingredients by alphabetical order
   return (
     <section className="recipe">
