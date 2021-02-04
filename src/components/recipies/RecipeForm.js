@@ -7,7 +7,7 @@ import "./Recipe.css"
 export const RecipeForm = () => {
   
   //pulling addRecipe function from provider
-  const { recipes,addRecipe,getRecipes } = useContext(RecipeContext)
+  const { addRecipe,getRecipes } = useContext(RecipeContext)
   
   const { addIngredient, getIngredients } = useContext(IngredientContext)
   
@@ -52,7 +52,6 @@ export const RecipeForm = () => {
       instruction:recipe.instruction,
       specialNotes:recipe.specialNotes
     })
-    //TODO: get this to work!!!
       .then((newRecipe)=>{
         console.log(newRecipe)
              addIngredient({
@@ -65,7 +64,7 @@ export const RecipeForm = () => {
       .then(history.push("/recipes"))
   }
   
-  
+  //TODO: add ability to generate more ingredients
   return (
     <div className="recipe__form recipe">
       <button onClick={()=> history.push("/recipes")}>back</button>

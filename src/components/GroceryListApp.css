@@ -1,0 +1,30 @@
+body {
+  background-color: #8db596;
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  display:flex;
+  height: 100vh;
+}
+.menu__button--container{
+  position: relative;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1;
+  height: 1.5rem;
+}
+
+.menu__button{
+  width: 2rem;
+  height: 0.25rem;
+  margin-bottom: 0.25rem;
+  background-color:#707070 ;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  transform-origin: 1px;
+ 
+}
