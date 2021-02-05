@@ -7,7 +7,7 @@ export const GroceryListRecipeProvider = (props)=> {
   const [jointList, setJointList ] = useState([])
   
   const getGroceryRecipeJoin = () => {
-    return fetch('http://localhost:8088/groceryListIngredients')
+    return fetch('http://localhost:8088/groceryListSelect')
       .then(res => res.json())
       .then(setJointList)
   }

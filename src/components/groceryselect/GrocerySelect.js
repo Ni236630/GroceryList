@@ -18,7 +18,6 @@ export const GrocerySelectList = () => {
   const [grocerySelectList, setGrocerySelectList] = useState({
     name: "",
     usersId: activeUser,
-    recipesId: 0,
   });
 
   const [groceryListName, setGroceryListName] = useState({
@@ -45,7 +44,6 @@ export const GrocerySelectList = () => {
     addGroceryList({
       name: grocerySelectList.name,
       usersId: activeUser,
-      recipesId: grocerySelectList.recipesId,
     }).then((list) => {
       addGrocerySelect({
         groceryListId: list.id,
@@ -77,7 +75,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -88,7 +86,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option  key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -99,7 +97,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option key={r.id}  value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -110,7 +108,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option  key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -121,7 +119,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option  key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -132,7 +130,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option  key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -143,7 +141,7 @@ export const GrocerySelectList = () => {
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option  key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -154,7 +152,7 @@ export const GrocerySelectList = () => {
           event.preventDefault();
           handleSaveList();
         }}
-        class="btn--saveList"
+        className="btn--saveList"
       >
         Save List
       </button>
