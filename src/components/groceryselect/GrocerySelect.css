@@ -1,0 +1,28 @@
+
+.groceryList__container{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: auto ;
+;
+}
+.listName{
+  position: relative;
+  
+
+}
+.groceryList--day{ 
+  background-color: #8db596;
+  border-radius: 7px;
+  margin: 1px;
+  box-shadow: 2px 5px #92817a;
+}
+
+select{
+  border-radius: 7px;
+}
+.btn--saveList{
+  position: relative;
+  left:94%;
+ margin-top:10px
+}

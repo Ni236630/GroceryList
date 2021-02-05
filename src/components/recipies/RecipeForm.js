@@ -5,9 +5,7 @@ import { useHistory } from "react-router-dom";
 import "./Recipe.css";
 
 export const RecipeForm = () => {
-  // const [inputFields, setInputFields] = useState([
-  //   {ingredient: ''}
-  // ])
+ 
   //pulling addRecipe function from provider
   const { addRecipe, getRecipes } = useContext(RecipeContext);
 
