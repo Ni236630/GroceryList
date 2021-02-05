@@ -9,7 +9,8 @@ import { GroceryListProvider } from "./grocerylist/GroceryProvider";
 import { GroceryList } from "./grocerylist/GroceryList";
 import { GroceryDetail } from "./grocerylist/GroceryListDetail";
 import { GroceryListRecipeProvider } from "./grocerylistrecipe/GroceryListRecipe";
-import { GrocerySelectList } from "./groceryselect/GrocerySelect"
+import { GrocerySelectList } from "./groceryselect/GrocerySelect";
+import { GrocerySelectProvider } from "./groceryselect/GrocerySelectProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -32,9 +33,11 @@ export const ApplicationViews = () => {
       </RecipeProvider>
 
       <RecipeProvider>
-        <Route exact path ="/">
-          <GrocerySelectList />
-        </Route>
+        <GrocerySelectProvider>
+          <Route exact path="/">
+            <GrocerySelectList />
+          </Route>
+        </GrocerySelectProvider>
         <IngredientProvider>
           <Route exact path="/recipes/add">
             <RecipeForm />
