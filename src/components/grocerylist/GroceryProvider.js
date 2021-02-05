@@ -24,7 +24,11 @@ export const GroceryListProvider = (props) => {
       },
       body:JSON.stringify(listObj)
     })
-      .then(getGroceryLists)
+      .then(res => res.json())
+      .then(list => {
+        getGroceryLists()
+        return list
+      })
   }
   
   return (
