@@ -14,7 +14,7 @@ export const RecipeForm = () => {
   const { addIngredient, getIngredients } = useContext(IngredientContext);
 
   const history = useHistory();
-
+  const activeUser = parseInt(localStorage.getItem("grocery_customer"))
   //set up for the default object which will be saved to the json file; all foreign keys must match primaries
   const [recipe, setRecipe] = useState({
     name: "",
@@ -69,7 +69,7 @@ export const RecipeForm = () => {
   const handleSaveRecipe = () => {
     addRecipe({
       name: recipe.name,
-      userId: 1,
+      usersId: activeUser,
       instruction: recipe.instruction,
       specialNotes: recipe.specialNotes,
     })
