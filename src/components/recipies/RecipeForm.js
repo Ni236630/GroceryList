@@ -84,7 +84,6 @@ export const RecipeForm = () => {
       .then(history.push("/recipes"));
   };
  
-  //TODO: add ability to generate more ingredients
   return (
     <div className="recipe__form recipe">
       <button onClick={() => history.push("/recipes")}>back</button>
