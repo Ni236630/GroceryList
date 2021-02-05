@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { GroceryListContext } from "./GroceryProvider";
 import { IngredientContext } from "../ingredients/IngredientProvider";
-import { GroceryListRecipeContext } from "../grocerylistrecipe/GroceryListRecipe";
+import { GroceryListRecipeContext } from "../grocerylistrecipe2/GroceryListRecipe";
 import { RecipeContext } from "../recipies/RecipeProvider";
 import "../recipies/Recipe.css";
 import { IngredientCard } from "../ingredients/IngredientCard";
