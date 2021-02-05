@@ -4,9 +4,11 @@ import { RecipeCard } from './RecipeCard'
 import { useHistory } from 'react-router-dom'
 import './Recipe.css'
 
+
+
 export const RecipeList = () => {
   //receiving usable functions and state variable from provider
-
+  
   const { recipes, getRecipes } = useContext(RecipeContext)
   const history = useHistory()
   //initial render for mounting
@@ -23,7 +25,13 @@ export const RecipeList = () => {
       {/*adds button to direct to form to add new recipe*/}
       <button onClick={()=> history.push("/recipes/add")}>Add New Recipe </button>
       {recipes.map(r => {
-        return  <RecipeCard key={r.id} recipe={r} />  })}
+        if(r.usersId ===  parseInt(localStorage.getItem("grocery_customer"))){
+        
+          return  <RecipeCard key={r.id} recipe={r} /> 
+        } else {
+          return
+        }
+         })}
     </div>
     </>
   )

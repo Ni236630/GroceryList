@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "./Navbar.css"
 
 
@@ -13,12 +13,19 @@ const openClose = (open) => {
     
     }
 }
+
 export const Navbar = ({open}, {setOpen}) => {
+    const history = useHistory()
+    
+    const logout = () => {
+        localStorage.clear()
+        history.push("/login")
+    }
     
     //TODO: figure out how to fix closing of menu on click
     return (
     <>
-     
+        <div><button className="button--logout" onClick={()=>{logout()}}>log out</button></div>
         <div className="navbar__container menu" style={openClose(open)}>
         <ul className="navbar">
             <li className="navbar__item active" >

@@ -33,3 +33,8 @@
   border-radius: 7px;
 }
 
+.button--logout{
+  right: 3%;
+    top: 1.5rem;
+    position: absolute;
+}
