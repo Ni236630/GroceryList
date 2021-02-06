@@ -12,45 +12,62 @@ export const GrocerySelectList = () => {
   const { addGrocerySelect } = useContext(MainSelectContext);
 
   //grabbing context to use in order to add list name
-  const { addGroceryList } = useContext(GroceryListContext);
+  const { addGroceryList, getGroceryList } = useContext(GroceryListContext);
 
   //setting state for the list
   const [grocerySelectList, setGrocerySelectList] = useState({
     name: "",
     usersId: activeUser,
-    recipesId: 0,
   });
 
-  const [groceryListName, setGroceryListName] = useState({
+  const [groceryListName, setGroceryListName] = useState([{
     groceryListId: 0,
     recipesId: 0,
-  });
+  }]);
 
   useEffect(() => {
-    getRecipes();
+    getRecipes().then(getGroceryList);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleControlledInputChangeName = (event) => {
-    const newGroceryListItem = { ...groceryListName };
-    newGroceryListItem[event.target.id] = event.target.value;
-    setGroceryListName(newGroceryListItem);
-  };
+  const addRecipeToList = (event) => {
+    const values = [...groceryListName];
+    values.push({ name: parseInt(event.target.value) });
+    setGroceryListName(values);
+    
+ 
+  // const handleControlledInputChangeName = (index,event) => {
+     
+  //       const newGroceryListItem = groceryListName ;
+  //       if(event.target.id === "recipes"){
+  //         newGroceryListItem[index].name = event.target.value;
+  //       }
 
+  //       setGroceryListName(newGroceryListItem);
+  //     }
+   };
+  
+ 
   const handleControlledInputChange = (event) => {
-    const newGroceryList = { ...grocerySelectList };
-    newGroceryList[event.target.id] = event.target.value;
-    setGrocerySelectList(newGroceryList);
-  };
+      const newGroceryList = { ...grocerySelectList };
+      newGroceryList[event.target.id] = event.target.value;
+      setGrocerySelectList(newGroceryList);
+    };
+ 
+    
+ 
   const handleSaveList = () => {
     addGroceryList({
       name: grocerySelectList.name,
       usersId: activeUser,
-      recipesId: grocerySelectList.recipesId,
     }).then((list) => {
-      addGrocerySelect({
+     //TODO: figure out why this is adding an 8th object
+        groceryListName.forEach((recipe)=>{
+          console.log(recipe)
+           addGrocerySelect({
         groceryListId: list.id,
-        recipesId: grocerySelectList.recipesId,
-      });
+        recipesId: recipe.name,
+      })
+        });
     });
   };
   return (
@@ -73,77 +90,77 @@ export const GrocerySelectList = () => {
       <div className="groceryList__container">
         <div className="groceryList--day">
           <h3>Sunday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
-            <option value="0">Please Select A Recipe</option>
+          <select name="recipe" onChange={addRecipeToList} id="recipes">
+            <option  value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option  key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
         </div>
         <div className="groceryList--day">
           <h3>Monday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
+          <select name="recipe"onChange={addRecipeToList} id="recipes">
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option   key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
         </div>
         <div className="groceryList--day">
           <h3>Tuesday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
+          <select name="recipe" onChange={addRecipeToList} id="recipes">
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option   key={r.id}  value={r.id}>{r.name}</option>;
               }
             })}
           </select>
         </div>
         <div className="groceryList--day">
           <h3>Wednesday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
+          <select name="recipe" onChange={addRecipeToList} id="recipes">
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option   key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
         </div>
         <div className="groceryList--day">
           <h3>Thursday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
+          <select name="recipe" onChange={addRecipeToList} id="recipes">
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option   key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
         </div>
         <div className="groceryList--day">
           <h3>Friday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
+          <select name="recipe" onChange={addRecipeToList} id="recipes">
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option   key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
         </div>
         <div className="groceryList--day">
           <h3>Saturday</h3>
-          <select onChange={handleControlledInputChangeName} id="recipes">
+          <select name="recipe" onChange={addRecipeToList} id="recipes">
             <option value="0">Please Select A Recipe</option>
             {recipes.map((r) => {
               if (r.usersId === activeUser) {
-                return <option value={r.id}>{r.name}</option>;
+                return <option    key={r.id} value={r.id}>{r.name}</option>;
               }
             })}
           </select>
@@ -154,7 +171,7 @@ export const GrocerySelectList = () => {
           event.preventDefault();
           handleSaveList();
         }}
-        class="btn--saveList"
+        className="btn--saveList"
       >
         Save List
       </button>

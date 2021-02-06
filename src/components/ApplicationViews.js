@@ -33,11 +33,13 @@ export const ApplicationViews = () => {
       </RecipeProvider>
 
       <RecipeProvider>
+      <GroceryListProvider>
         <GrocerySelectProvider>
           <Route exact path="/">
             <GrocerySelectList />
           </Route>
         </GrocerySelectProvider>
+        </GroceryListProvider>
         <IngredientProvider>
           <Route exact path="/recipes/add">
             <RecipeForm />
@@ -46,6 +48,7 @@ export const ApplicationViews = () => {
             <RecipeDetail />
           </Route>
         </IngredientProvider>
+        
         <Route exact path="/recipes">
           <RecipeList />
         </Route>
