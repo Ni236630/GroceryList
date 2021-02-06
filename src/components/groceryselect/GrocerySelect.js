@@ -60,7 +60,7 @@ export const GrocerySelectList = () => {
       name: grocerySelectList.name,
       usersId: activeUser,
     }).then((list) => {
-     
+     //TODO: figure out why this is adding an 8th object
         groceryListName.forEach((recipe)=>{
           console.log(recipe)
            addGrocerySelect({

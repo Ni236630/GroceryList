@@ -29,7 +29,8 @@ export const GroceryDetail = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-
+console.log("jointList", jointList)
+console.log("ingredients", ingredients)
 
   return (
     <>
@@ -39,14 +40,14 @@ export const GroceryDetail = () => {
         <div>
           {
             //maybe use concat before sort, but where?
-          
+        
             jointList.map((l) => {
-              if (l.grocerylistsId === parseInt(listId)){
-                let hello = ingredients
-                  .filter((i) => i.recipesId === l.recipesId )
-                  .sort((a, b) => a.name.localeCompare(b.name))
               
-                 return hello.map((i) => <IngredientCard key={i.id} ingredient={i} />);
+              if (l.groceryListId === parseInt(listId)){
+                console.log("ids",l.groceryListId)
+                let hello = ingredients.filter((i) => i.recipesId === l.recipesId )
+                  console.log("filter",hello)
+                 return hello.sort((a, b) => a.name.localeCompare(b.name)).map((i) => <IngredientCard key={i.id} ingredient={i} />);
              
               }
             })
