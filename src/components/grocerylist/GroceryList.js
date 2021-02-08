@@ -5,7 +5,7 @@ import { GroceryCard } from "./GroceryCard";
 import "../recipies/Recipe.css";
 
 export const GroceryList = () => {
-  const { grocerylists, getGroceryLists } = useContext(GroceryListContext);
+  const { grocerylists, getGroceryLists, deleteGroceryList } = useContext(GroceryListContext);
   const activeUser = parseInt(localStorage.getItem("grocery_customer"));
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const GroceryList = () => {
             if (gl.usersId === activeUser) {
               return (
                 <li key={gl.id}>
-                  <GroceryCard key={gl.id} groceryList={gl} />{" "}
+                <GroceryCard key={gl.id} groceryList={gl} /><button className="btn--deleteList" onClick={()=>{deleteGroceryList(gl.id)}}>delete</button>
                 </li>
               )
             } else {

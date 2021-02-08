@@ -31,9 +31,16 @@ export const GroceryListProvider = (props) => {
       })
   }
   
+  const deleteGroceryList = (id)=>{
+    return fetch(`http://localhost:8088/grocerylists/${id}`,{
+      method:'DELETE'
+    })
+      .then(getGroceryLists)
+  }
+  
   return (
     <GroceryListContext.Provider value={{
-      grocerylists, getGroceryLists, addGroceryList, getGroceryListById 
+      grocerylists, getGroceryLists, addGroceryList, getGroceryListById, deleteGroceryList 
     }}>
       {props.children}
     </GroceryListContext.Provider>
