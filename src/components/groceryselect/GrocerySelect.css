@@ -11,14 +11,15 @@
   background-color: #8db596;
   border-radius: 7px;
   margin: 1px;
-  box-shadow: 2px 5px #92817a;
+  box-shadow: 0px 5px 10px 0 rgba(65, 65, 65, 0.95);
 }
+
 
 select{
   border-radius: 7px;
 }
 .btn--saveList{
   position: relative;
-  left:94%;
+  left:90%;
  margin-top:10px
 }

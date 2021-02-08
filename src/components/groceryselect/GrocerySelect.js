@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { RecipeContext } from "../recipies/RecipeProvider";
 import { MainSelectContext } from "./GrocerySelectProvider";
 import { GroceryListContext } from "../grocerylist/GroceryProvider";
+import {useHistory} from 'react-router-dom'
 import "../recipies/Recipe.css";
 import "./GrocerySelect.css";
 
@@ -13,6 +14,8 @@ export const GrocerySelectList = () => {
 
   //grabbing context to use in order to add list name
   const { addGroceryList, getGroceryList } = useContext(GroceryListContext);
+  
+  const history = useHistory()
 
   //setting state for the list
   const [grocerySelectList, setGrocerySelectList] = useState({
@@ -20,10 +23,7 @@ export const GrocerySelectList = () => {
     usersId: activeUser,
   });
 
-  const [groceryListName, setGroceryListName] = useState([{
-    groceryListId: 0,
-    recipesId: 0,
-  }]);
+  const [groceryListName, setGroceryListName] = useState([]);
 
   useEffect(() => {
     getRecipes().then(getGroceryList);
@@ -31,7 +31,10 @@ export const GrocerySelectList = () => {
 
   const addRecipeToList = (event) => {
     const values = [...groceryListName];
-    values.push({ name: parseInt(event.target.value) });
+    if(event.target.value !== "0" ){
+      
+      values.push({ name: parseInt(event.target.value) });
+    }
     setGroceryListName(values);
     
  
@@ -60,15 +63,15 @@ export const GrocerySelectList = () => {
       name: grocerySelectList.name,
       usersId: activeUser,
     }).then((list) => {
-     //TODO: figure out why this is adding an 8th object
         groceryListName.forEach((recipe)=>{
-          console.log(recipe)
+          console.log("a look inside",recipe)
            addGrocerySelect({
         groceryListId: list.id,
         recipesId: recipe.name,
       })
         });
     });
+
   };
   return (
     <div className="recipe">
@@ -168,12 +171,13 @@ export const GrocerySelectList = () => {
       </div>
       <button
         onClick={(event) => {
-          event.preventDefault();
+         event.preventDefault();
           handleSaveList();
+          history.push('/grocerylists')
         }}
         className="btn--saveList"
       >
-        Save List
+        Save & View Lists
       </button>
     </div>
   );
