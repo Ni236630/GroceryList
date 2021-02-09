@@ -22,9 +22,9 @@ export const RecipeDetail = () => {
   //function for button two step process to get rid of ingredients not needed. 
   const handleDelete = () => {
     return deleteRecipe(recipeId)
-      .then(() => {
+      .then((recipes) => {
         ingredients.map((i) => {
-          if (i.recipesId === recipe.id) {
+          if (i.recipesId === recipes.id) {
             return deleteIngredient(ingredientId);
           }
         });
