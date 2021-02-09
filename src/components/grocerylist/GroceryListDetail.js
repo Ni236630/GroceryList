@@ -5,7 +5,7 @@ import { IngredientContext } from "../ingredients/IngredientProvider";
 import { GroceryListRecipeContext } from "../grocerylistrecipe2/GroceryListRecipe";
 import { RecipeContext } from "../recipies/RecipeProvider";
 import "../recipies/Recipe.css";
-import { IngredientCard, IngredientCardDetail } from "../ingredients/IngredientCard";
+
 
 export const GroceryDetail = () => {
   //getting all the information required for this
@@ -15,10 +15,15 @@ export const GroceryDetail = () => {
   const { jointList, getGroceryRecipeJoin } = useContext(
     GroceryListRecipeContext
   );
-  const [listObj, setListObj] = useState({})
+ 
   const [list, setList] = useState({});
   const { listId } = useParams();
   const history = useHistory();
+  
+  //variable containers for steps in data extraction
+  const duplicateIdCounter = {}
+  const html = []
+
 
   useEffect(() => {
     getGroceryRecipeJoin();
@@ -30,43 +35,27 @@ export const GroceryDetail = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
   
+  /* method for extracting and return data for component */
+  
 //gets all ingredients in one array
- const allIngredients = jointList.filter(l=>l.groceryListId === parseInt(listId)).map((value) =>{
-  let ingredientList = ingredients.filter((i) => i.recipesId === value.recipesId)
- return ingredientList
-}).flat().sort((a, b) => a.name.localeCompare(b.name)).map(i=>i.name)
-
- const result  = {}
-const ingredientReduced  = allIngredients.map(function(x){
- 
-result[x]=(result[x]||0)+1
+ const matchingGroceryList = jointList.filter(l=>l.groceryListId === parseInt(listId)).map((value) =>{
+   
+   let ingredientList = ingredients.filter((i) => i.recipesId === value.recipesId)
+  return ingredientList
 })
 
+//flattens and sorts the list of all ingredient objects
+const matchingIngredients = matchingGroceryList.flat().sort((a, b) => a.name.localeCompare(b.name))
 
-
-// const duplicateIdCounter = {}
-// ​
-// for (let object of objectArray) {
-//   duplicateIdCounter[object['id']] = (duplicateIdCounter[object['id']] || 0) + 1
-// }
-// ​
-// const uniqueObjectArray = objectArray.filter((obj) => duplicateIdCounter[obj['id']] < 2)
-// ​
-// console.log(uniqueObjectArray)
-
-// for (const key in result) {
-//   <div>
-//     <li> `${key}: ${result[key]}`</li>;
-//   </div>
-// }
-
- const newList = [...new Set(allIngredients)]
- 
- 
- const bullshit = Object.keys(result)
- bullshit.forEach((key,index)=>{
- console.log( <li>{`${key}: ${result[key]}`} </li> )
-})   
+//makes new object of key value pairs based off of the name (key) and how many duplicates (value)
+for (let object of matchingIngredients) {
+  duplicateIdCounter[object['name']] = (duplicateIdCounter[object['name']] || 0) + 1
+}
+//iterates new object and pushes them into an array as key/value pairs  within an <li> element 
+for (const [key,value] of Object.entries(duplicateIdCounter)){
+  html.push(<li key={key}> {`${value} `+`x`+` ${key}`}</li>);
+}
+  
 
   return (
     <>
@@ -74,25 +63,7 @@ result[x]=(result[x]||0)+1
         <button onClick={() => history.push("/grocerylists")}>back</button>
         <h3 className="grocerylist__name">{list.name}</h3>
         <div>
-          {
-           
-      
-          
-            //maybe use concat before sort, but where?
-            newList.map(e => {
-           return <li key={e}>{e}</li> })
-            // jointList.map((l) => {
-            //   if (l.groceryListId === parseInt(listId)) {
-            //     let hello = ingredients.filter(
-            //       (i) => i.recipesId === l.recipesId
-            //     );
-            //     console.log("hello", hello);
-            //     return hello
-            //       .sort((a, b) => a.name.localeCompare(b.name))
-            //       .map((i) => <IngredientCard key={i.id} ingredient={i} />);
-            //   }
-            // })
-          }
+          { html }
         </div>
       </div>
     </>

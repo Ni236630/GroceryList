@@ -38,8 +38,11 @@ export const RecipeProvider = (props) => {
   const deleteRecipe = recipeId => {
     return fetch(`http://localhost:8088/recipes/${recipeId}`,{
       method: "DELETE"
-    })
-      .then(getRecipes)
+    }).then(res=>res.json())
+      .then(recipe =>{
+        getRecipes()
+        return recipe
+      })
   }
   
   return (

@@ -16,7 +16,7 @@ export const RecipeList = () => {
     getRecipes()
   },[])// eslint-disable-line react-hooks/exhaustive-deps
  
-  
+
   
   //returning single object
   return  (
@@ -25,14 +25,7 @@ export const RecipeList = () => {
       {/*adds button to direct to form to add new recipe
         replace with filter (look at how map works vs filter)*/}
       <button onClick={()=> history.push("/recipes/add")}>Add New Recipe </button>
-      {recipes.map(r => {
-        if(r.usersId ===  parseInt(localStorage.getItem("grocery_customer"))){
-        
-          return  <RecipeCard key={r.id} recipe={r} /> 
-        } else {
-          return
-        }
-         })}
+      {recipes.filter(r =>r.usersId === parseInt(localStorage.getItem("grocery_customer")) ).map(i => <RecipeCard key={i.id} recipe={i} /> )}
     </div>
     </>
   )
