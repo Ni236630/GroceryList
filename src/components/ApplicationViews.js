@@ -15,11 +15,7 @@ import { GrocerySelectProvider } from "./groceryselect/GrocerySelectProvider";
 export const ApplicationViews = () => {
   return (
     <>
-      <GroceryListProvider>
-        <Route exact path="/grocerylists">
-          <GroceryList />
-        </Route>
-      </GroceryListProvider>
+     
       <RecipeProvider>
         <IngredientProvider>
           <GroceryListProvider>
@@ -38,6 +34,9 @@ export const ApplicationViews = () => {
           <Route exact path="/">
             <GrocerySelectList />
           </Route>
+          <Route exact path="/grocerylists">
+          <GroceryList />
+        </Route>
         </GrocerySelectProvider>
         </GroceryListProvider>
         <IngredientProvider>
