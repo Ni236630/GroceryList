@@ -18,11 +18,13 @@ export const Navbar = ({ open }, { setOpen }) => {
   useEffect(() => {
     getUsers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  
+  
   //match localstorage id with user id
   const currentUser = users.find(
     (u) => u.id === parseInt(localStorage.getItem("grocery_customer"))
   );
-  console.log(currentUser);
+ 
   const history = useHistory();
 
   const logout = () => {

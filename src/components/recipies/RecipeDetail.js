@@ -53,16 +53,16 @@ export const RecipeDetail = () => {
         Delete
       </button>
       <h3 className="recipe__name">{recipe.name}</h3>
-      <h4>Ingredients</h4>
+      <h4>Ingredients:</h4>
       {
         ingredients.filter((i) => i.recipesId === recipe.id).sort((a, b) => a.name.localeCompare(b.name)).map((ing)=> <IngredientCard key={ing.id} ingredient={ing} />)
       }
       <div className="recipe__instructions">
-        <h4>Instructions</h4>
+        <h4>Instructions:</h4>
         {recipe.instruction}
       </div>
       <div className="recipe__specialNotes">
-        <h4>Special Notes</h4>
+        <h4>Special Notes:</h4>
         **{recipe.specialNotes}
       </div>
     </section>
