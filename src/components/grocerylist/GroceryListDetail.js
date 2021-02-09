@@ -19,6 +19,9 @@ export const GroceryDetail = () => {
   const [list, setList] = useState({});
   const { listId } = useParams();
   const history = useHistory();
+  const duplicateIdCounter = {}
+  const html = []
+
 
   useEffect(() => {
     getGroceryRecipeJoin();
@@ -31,42 +34,22 @@ export const GroceryDetail = () => {
   
   
 //gets all ingredients in one array
- const allIngredients = jointList.filter(l=>l.groceryListId === parseInt(listId)).map((value) =>{
-  let ingredientList = ingredients.filter((i) => i.recipesId === value.recipesId)
- return ingredientList
-}).flat().sort((a, b) => a.name.localeCompare(b.name)).map(i=>i.name)
-
- const result  = {}
-const ingredientReduced  = allIngredients.map(function(x){
- 
-result[x]=(result[x]||0)+1
+ const matchingGroceryList = jointList.filter(l=>l.groceryListId === parseInt(listId)).map((value) =>{
+   
+   let ingredientList = ingredients.filter((i) => i.recipesId === value.recipesId)
+  return ingredientList
 })
+const matchingIngredients = matchingGroceryList.flat().sort((a, b) => a.name.localeCompare(b.name))
 
 
+for (let object of matchingIngredients) {
+  duplicateIdCounter[object['name']] = (duplicateIdCounter[object['name']] || 0) + 1
+}
 
-// const duplicateIdCounter = {}
-// ​
-// for (let object of objectArray) {
-//   duplicateIdCounter[object['id']] = (duplicateIdCounter[object['id']] || 0) + 1
-// }
-// ​
-// const uniqueObjectArray = objectArray.filter((obj) => duplicateIdCounter[obj['id']] < 2)
-// ​
-// console.log(uniqueObjectArray)
-
-// for (const key in result) {
-//   <div>
-//     <li> `${key}: ${result[key]}`</li>;
-//   </div>
-// }
-
- const newList = [...new Set(allIngredients)]
- 
- 
- const bullshit = Object.keys(result)
- bullshit.forEach((key,index)=>{
- console.log( <li>{`${key}: ${result[key]}`} </li> )
-})   
+for (const [key,value] of Object.entries(duplicateIdCounter)){
+  html.push(<li key={key}> {`${value} `+`x`+` ${key}`}</li>);
+}
+  
 
   return (
     <>
@@ -74,25 +57,7 @@ result[x]=(result[x]||0)+1
         <button onClick={() => history.push("/grocerylists")}>back</button>
         <h3 className="grocerylist__name">{list.name}</h3>
         <div>
-          {
-           
-      
-          
-            //maybe use concat before sort, but where?
-            newList.map(e => {
-           return <li key={e}>{e}</li> })
-            // jointList.map((l) => {
-            //   if (l.groceryListId === parseInt(listId)) {
-            //     let hello = ingredients.filter(
-            //       (i) => i.recipesId === l.recipesId
-            //     );
-            //     console.log("hello", hello);
-            //     return hello
-            //       .sort((a, b) => a.name.localeCompare(b.name))
-            //       .map((i) => <IngredientCard key={i.id} ingredient={i} />);
-            //   }
-            // })
-          }
+          { html }
         </div>
       </div>
     </>
