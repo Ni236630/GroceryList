@@ -63,7 +63,7 @@ export const RecipeForm = () => {
     return setIngredients(values);
   };
 
-  //TODO need to add ingredient save access and local storage for user!
+ //Two-step process to save a recipe and its ingredients
   const handleSaveRecipe = () => {
     addRecipe({
       name: recipe.name,

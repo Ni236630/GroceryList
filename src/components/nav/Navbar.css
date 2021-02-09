@@ -34,8 +34,12 @@
   border-bottom-right-radius: 7px;
 }
 
-.button--logout{
+.logout{
   right: 3%;
     top: 1.5rem;
     position: absolute;
+}
+
+.button--logout{
+  margin-left:70%;
 }
