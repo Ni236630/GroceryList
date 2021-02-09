@@ -5,7 +5,7 @@ import { IngredientContext } from "../ingredients/IngredientProvider";
 import { GroceryListRecipeContext } from "../grocerylistrecipe2/GroceryListRecipe";
 import { RecipeContext } from "../recipies/RecipeProvider";
 import "../recipies/Recipe.css";
-import { IngredientCard, IngredientCardDetail } from "../ingredients/IngredientCard";
+
 
 export const GroceryDetail = () => {
   //getting all the information required for this
@@ -15,10 +15,12 @@ export const GroceryDetail = () => {
   const { jointList, getGroceryRecipeJoin } = useContext(
     GroceryListRecipeContext
   );
-  const [listObj, setListObj] = useState({})
+ 
   const [list, setList] = useState({});
   const { listId } = useParams();
   const history = useHistory();
+  
+  //variable containers for steps in data extraction
   const duplicateIdCounter = {}
   const html = []
 
@@ -33,19 +35,23 @@ export const GroceryDetail = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   
   
+  /* method for extracting and return data for component */
+  
 //gets all ingredients in one array
  const matchingGroceryList = jointList.filter(l=>l.groceryListId === parseInt(listId)).map((value) =>{
    
    let ingredientList = ingredients.filter((i) => i.recipesId === value.recipesId)
   return ingredientList
 })
+
+//flattens and sorts the list of all ingredient objects
 const matchingIngredients = matchingGroceryList.flat().sort((a, b) => a.name.localeCompare(b.name))
 
-
+//makes new object of key value pairs based off of the name (key) and how many duplicates (value)
 for (let object of matchingIngredients) {
   duplicateIdCounter[object['name']] = (duplicateIdCounter[object['name']] || 0) + 1
 }
-
+//iterates new object and pushes them into an array as key/value pairs  within an <li> element 
 for (const [key,value] of Object.entries(duplicateIdCounter)){
   html.push(<li key={key}> {`${value} `+`x`+` ${key}`}</li>);
 }
