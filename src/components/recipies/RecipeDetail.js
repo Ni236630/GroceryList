@@ -6,18 +6,20 @@ import "./Recipe.css";
 import { IngredientCard } from "../ingredients/IngredientCard";
 
 export const RecipeDetail = () => {
+  
+  //obtaining context from the providers
   const { deleteIngredient, ingredients, getIngredients } = useContext(
     IngredientContext
   );
   const { deleteRecipe, getRecipeById } = useContext(RecipeContext);
+  
 
   const [recipe, setRecipe] = useState({});
   const { recipeId } = useParams();
   const { ingredientId } = useParams();
-
   const history = useHistory();
 
-  
+  //function for button two step process to get rid of ingredients not needed. 
   const handleDelete = () => {
     return deleteRecipe(recipeId)
       .then(() => {
@@ -37,7 +39,9 @@ export const RecipeDetail = () => {
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  //TODO: add way to display sort ingredients by alphabetical order
+  
+
+
   return (
     <section className="recipe">
       <button onClick={() => history.push("/recipes")}>back</button>
@@ -50,14 +54,9 @@ export const RecipeDetail = () => {
       </button>
       <h3 className="recipe__name">{recipe.name}</h3>
       <h4>Ingredients</h4>
-      {ingredients.map((i) => {
-        if (i.recipesId === recipe.id) {
-          return  <IngredientCard key={i.id} ingredient={i} />
-        }else{
-          return
-        }
-      
-      })}
+      {
+        ingredients.filter((i) => i.recipesId === recipe.id).sort((a, b) => a.name.localeCompare(b.name)).map((ing)=> <IngredientCard key={ing.id} ingredient={ing} />)
+      }
       <div className="recipe__instructions">
         <h4>Instructions</h4>
         {recipe.instruction}
