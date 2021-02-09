@@ -145,6 +145,7 @@ export const RecipeForm = () => {
               id="instruction"
               cols="45"
               rows="10"
+              wrap="hard"
               onChange={handleControlledInputChange}
               required
               className="from-control"
