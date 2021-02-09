@@ -70,8 +70,8 @@ export const GrocerySelectList = () => {
         recipesId: recipe.name,
       })
         });
-    });
-
+    }).then(getGroceryList)
+    .then(history.push('/grocerylists'))
   };
   return (
     <div className="recipe">
@@ -172,8 +172,8 @@ export const GrocerySelectList = () => {
       <button
         onClick={(event) => {
          event.preventDefault();
-          handleSaveList();
-          history.push('/grocerylists')
+          handleSaveList() 
+         
         }}
         className="btn--saveList"
       >

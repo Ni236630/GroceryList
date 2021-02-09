@@ -22,7 +22,8 @@ export const RecipeList = () => {
   return  (
     <>
     <div className="recipeList__container recipe">
-      {/*adds button to direct to form to add new recipe*/}
+      {/*adds button to direct to form to add new recipe
+        replace with filter (look at how map works vs filter)*/}
       <button onClick={()=> history.push("/recipes/add")}>Add New Recipe </button>
       {recipes.map(r => {
         if(r.usersId ===  parseInt(localStorage.getItem("grocery_customer"))){
