@@ -40,6 +40,15 @@
     position: absolute;
 }
 
+.logout__container{
+  display:flex;
+  flex-direction: row;
+  height: 30px;
+  justify-content: flex-end;
+}
+
 .button--logout{
-  margin-left:70%;
+  margin-left: 5px;
+  height:30px;
+  width: 30px;
 }

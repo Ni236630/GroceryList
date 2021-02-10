@@ -4,6 +4,7 @@ import { GroceryListContext } from "./GroceryProvider";
 import { IngredientContext } from "../ingredients/IngredientProvider";
 import { GroceryListRecipeContext } from "../grocerylistrecipe2/GroceryListRecipe";
 import { RecipeContext } from "../recipies/RecipeProvider";
+import BackButton from '../icons/Back'
 import "../recipies/Recipe.css";
 
 
@@ -60,7 +61,7 @@ for (const [key,value] of Object.entries(duplicateIdCounter)){
   return (
     <>
       <div className="groceryList recipe">
-        <button onClick={() => history.push("/grocerylists")}>back</button>
+      <div className="button__container" onClick={() => history.push("/grocerylists")}><BackButton className ="button--Back" /></div>
         <h3 className="grocerylist__name">{list.name}</h3>
         <div>
           { html }

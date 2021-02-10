@@ -4,6 +4,7 @@ import { IngredientContext } from "../ingredients/IngredientProvider";
 import { useParams, useHistory } from "react-router-dom";
 import "./Recipe.css";
 import { IngredientCard } from "../ingredients/IngredientCard";
+import BackButton from '../icons/Back'
 
 export const RecipeDetail = () => {
   
@@ -44,7 +45,7 @@ export const RecipeDetail = () => {
 
   return (
     <section className="recipe">
-      <button onClick={() => history.push("/recipes")}>back</button>
+      <div className="button__container" onClick={() => history.push("/")}><BackButton className ="button--Back" /></div>
       <button
         onClick={() => {
           handleDelete();

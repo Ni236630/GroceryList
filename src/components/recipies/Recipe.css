@@ -10,3 +10,20 @@
 .recipe__instructions{
   white-space: pre-wrap;
 }
+
+input {
+  width: 100%;
+}
+textarea{
+  width: 100%
+}
+
+.button__container{
+  height: 20px;
+  width: 20px;
+  
+}
+.add-subtract{
+  display:flex;
+  flex-direction: row;
+}

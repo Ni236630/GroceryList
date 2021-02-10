@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "./UserProvider";
 import "./Navbar.css";
+import LogoutButton from "../icons/Logout";
 
 //allows adjustment of menu onclick
 const openClose = (open) => {
@@ -31,21 +32,21 @@ export const Navbar = ({ open }, { setOpen }) => {
     localStorage.clear();
     history.push("/login");
   };
-
+//  <button
+//             className="button--logout"
+//             onClick={() => {
+//               logout();
+//             }}
+//           >
+//             log out
+//           </button>
   //TODO: figure out how to fix closing of menu on click
   return (
     <>
       <div className="logout">
        <h2> Welcome, {currentUser ? currentUser.name : "Friend"}</h2>
         <div className="logout__container">
-          <button
-            className="button--logout"
-            onClick={() => {
-              logout();
-            }}
-          >
-            log out
-          </button>
+        Logout <div onClick={() => {logout();}} ><LogoutButton className="button--logout" /></div> 
         </div>
       </div>
       <div className="navbar__container menu" style={openClose(open)}>
