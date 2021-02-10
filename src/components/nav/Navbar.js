@@ -19,34 +19,33 @@ export const Navbar = ({ open }, { setOpen }) => {
   useEffect(() => {
     getUsers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  
-  
+
   //match localstorage id with user id
   const currentUser = users.find(
     (u) => u.id === parseInt(localStorage.getItem("grocery_customer"))
   );
- 
+
   const history = useHistory();
 
   const logout = () => {
     localStorage.clear();
     history.push("/login");
   };
-//  <button
-//             className="button--logout"
-//             onClick={() => {
-//               logout();
-//             }}
-//           >
-//             log out
-//           </button>
+
   //TODO: figure out how to fix closing of menu on click
   return (
     <>
       <div className="logout">
-       <h2> Welcome, {currentUser ? currentUser.name : "Friend"}</h2>
+        <h1> Welcome, {currentUser ? currentUser.name : "Friend"}</h1>
         <div className="logout__container">
-        Logout <div onClick={() => {logout();}} ><LogoutButton className="button--logout" /></div> 
+          Logout{" "}
+          <div
+            onClick={() => {
+              logout();
+            }}
+          >
+            <LogoutButton className="button--logout" />
+          </div>
         </div>
       </div>
       <div className="navbar__container menu" style={openClose(open)}>

@@ -5,6 +5,7 @@ import { GroceryListContext } from "../grocerylist/GroceryProvider";
 import {useHistory} from 'react-router-dom'
 import "../recipies/Recipe.css";
 import "./GrocerySelect.css";
+import SaveButton from "../icons/Save";
 
 export const GrocerySelectList = () => {
   const activeUser = parseInt(localStorage.getItem("grocery_customer"));
@@ -59,25 +60,30 @@ export const GrocerySelectList = () => {
     
  
   const handleSaveList = () => {
-    addGroceryList({
-      name: grocerySelectList.name,
-      usersId: activeUser,
-    }).then((list) => {
-        groceryListName.forEach((recipe)=>{
-          console.log("a look inside",recipe)
-           addGrocerySelect({
-        groceryListId: list.id,
-        recipesId: recipe.name,
-      })
-        });
-    }).then(getGroceryList)
-    .then(history.push('/grocerylists'))
+    if(grocerySelectList.name === ""){
+      return alert("Please add a title.")
+    }else{
+      
+      addGroceryList({
+        name: grocerySelectList.name,
+        usersId: activeUser,
+      }).then((list) => {
+          groceryListName.forEach((recipe)=>{
+            console.log("a look inside",recipe)
+             addGrocerySelect({
+          groceryListId: list.id,
+          recipesId: recipe.name,
+        })
+          });
+      }).then(getGroceryList)
+      .then(history.push('/grocerylists'))
+    }
   };
   return (
     <div className="recipe">
       <fieldset className="listName">
         <div className="form-group">
-          <label htmlFor="name">List Name: </label>
+          <label htmlFor="name">List Name </label>
           <input
             type="text"
             id="name"
@@ -169,16 +175,17 @@ export const GrocerySelectList = () => {
           </select>
         </div>
       </div>
-      <button
-        onClick={(event) => {
+     
+      <div className="btn--saveList" >
+        Save & View Lists
+        <div onClick={(event) => {
          event.preventDefault();
           handleSaveList() 
          
-        }}
-        className="btn--saveList"
-      >
-        Save & View Lists
-      </button>
+        }}>
+          <SaveButton className="button--save" />
+        </div> 
+      </div>
     </div>
   );
 };

@@ -20,6 +20,10 @@ select{
 }
 .btn--saveList{
   position: relative;
-  left:90%;
+  left:85%;
  margin-top:10px
+}
+.button--save{
+  height: 25px;
+  width: 25;
 }
