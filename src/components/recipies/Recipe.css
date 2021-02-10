@@ -19,8 +19,8 @@ textarea{
 }
 
 .button__container{
-  height: 20px;
-  width: 20px;
+  height: 45px;
+  
   
 }
 .add-subtract{
@@ -32,4 +32,33 @@ textarea{
   flex-direction: row;
   justify-content: flex-end;
   height: 25px;
+}
+.button__container--list{
+  display:flex;
+  flex-direction: row;
+  height: 45px;
+  justify-content: space-between;
+ 
+  
+}
+.button__container--detail{
+  display:flex;
+  flex-direction: row;
+  height: 45px;
+  justify-content: space-between;
+ 
+  
+}
+.newRecipe--button{
+  width: 45px;
+  height:45px;
+}
+.button--Back {
+  width: 45px;
+  height:45px;
+}
+
+.button--delete{
+  width: 45px;
+  height:45px;
 }
