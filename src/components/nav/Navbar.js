@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "./UserProvider";
 import "./Navbar.css";
+import LogoutButton from "../icons/Logout";
 
 //allows adjustment of menu onclick
 const openClose = (open) => {
@@ -18,13 +19,12 @@ export const Navbar = ({ open }, { setOpen }) => {
   useEffect(() => {
     getUsers();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  
-  
+
   //match localstorage id with user id
   const currentUser = users.find(
     (u) => u.id === parseInt(localStorage.getItem("grocery_customer"))
   );
- 
+
   const history = useHistory();
 
   const logout = () => {
@@ -36,16 +36,16 @@ export const Navbar = ({ open }, { setOpen }) => {
   return (
     <>
       <div className="logout">
-       <h2> Welcome, {currentUser ? currentUser.name : "Friend"}</h2>
+        <h1 className="welcomeBanner"> Welcome, {currentUser ? currentUser.name : "Friend"}</h1>
         <div className="logout__container">
-          <button
-            className="button--logout"
+          Logout{" "}
+          <div
             onClick={() => {
               logout();
             }}
           >
-            log out
-          </button>
+            <LogoutButton className="button--logout" />
+          </div>
         </div>
       </div>
       <div className="navbar__container menu" style={openClose(open)}>

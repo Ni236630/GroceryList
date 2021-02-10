@@ -3,6 +3,10 @@ import { IngredientContext } from "../ingredients/IngredientProvider";
 import { RecipeContext } from "./RecipeProvider";
 import { useHistory } from "react-router-dom";
 import "./Recipe.css";
+import AddButton from "../icons/Add";
+import SubtractButton from "../icons/Subtract";
+import BackButton from "../icons/Back";
+import SaveButton from '../icons/Save'
 
 export const RecipeForm = () => {
  
@@ -84,12 +88,12 @@ export const RecipeForm = () => {
  
   return (
     <div className="recipe__form recipe">
-      <button onClick={() => history.push("/recipes")}>back</button>
+      <div className="button__container" onClick={() => history.push("/recipes")}><BackButton className ="button--Back" /></div>
       
         <h2 className="recipeForm__title">New Recipe</h2>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="name">Recipe Name: </label>
+            <label htmlFor="name">Recipe Name </label>
             <input
               type="text"
               id="name"
@@ -106,7 +110,7 @@ export const RecipeForm = () => {
          {ingredients.map((ingredient, index) => (
             <Fragment key={`${ingredient}~${index}`}>
               <div className="form-group ">
-                <label htmlFor="ingredient">Ingredient:</label>
+                <label htmlFor="ingredient">Ingredient</label>
                 <input
                   type="text"
                   className="form-control"
@@ -118,32 +122,26 @@ export const RecipeForm = () => {
                   }
                 />
               </div>
-              <div className="form-group">
-                <button
-                  className="btn"
-                  type="button"
+              <div className="form-group add-subtract">
+                <div
+                  className="button__container" 
                   onClick={() => removeIngredientField(index)}
                 >
-                  -
-                </button>
-                <button
-                  className="btn"
-                  type="button"
-                  onClick={() => addIngredientField()}
-                >
-                  +
-                </button>
+                 <SubtractButton className="addButton"/>
+                </div>
+                <div className="button__container" onClick={() => addIngredientField()}
+                > <AddButton className="addButton"/></div>
+                
               </div>
             </Fragment>
           ))}
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="instructions">Instructions: </label>
+            <label htmlFor="instructions">Instructions </label>
             <textarea
               type="text"
               id="instruction"
-              cols="45"
               rows="10"
               wrap="hard"
               onChange={handleControlledInputChange}
@@ -156,7 +154,7 @@ export const RecipeForm = () => {
         </fieldset>
         <fieldset>
           <div className="form-group">
-            <label htmlFor="specialNotes">Special Notes: </label>
+            <label htmlFor="specialNotes">Special Notes </label>
             <textarea
               type="text"
               id="specialNotes"
@@ -170,15 +168,14 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
-        <button
-          className="btn btn-primary"
-          onClick={(event) => {
-            event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
-            handleSaveRecipe();
-          }}
-        >
-          Save Recipe
-        </button>
-    </div>
+       
+        <div className="saveRecipe" onClick={(event) => {
+         event.preventDefault();
+         handleSaveRecipe()
+         
+        }}> Save Recipe
+          <SaveButton className="button--save" />
+        </div>
+        </div>
   );
 };

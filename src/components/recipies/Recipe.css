@@ -10,3 +10,55 @@
 .recipe__instructions{
   white-space: pre-wrap;
 }
+
+input {
+  width: 100%;
+}
+textarea{
+  width: 100%
+}
+
+.button__container{
+  height: 45px;
+  
+  
+}
+.add-subtract{
+  display:flex;
+  flex-direction: row;
+}
+.saveRecipe{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 25px;
+}
+.button__container--list{
+  display:flex;
+  flex-direction: row;
+  height: 45px;
+  justify-content: space-between;
+ 
+  
+}
+.button__container--detail{
+  display:flex;
+  flex-direction: row;
+  height: 45px;
+  justify-content: space-between;
+ 
+  
+}
+.newRecipe--button{
+  width: 45px;
+  height:45px;
+}
+.button--Back {
+  width: 45px;
+  height:45px;
+}
+
+.button--delete{
+  width: 45px;
+  height:45px;
+}
