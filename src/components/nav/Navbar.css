@@ -36,7 +36,7 @@
 
 .logout{
   right: 3%;
-    top: 1.5rem;
+    top: .25rem;
     position: absolute;
 }
 
@@ -56,4 +56,7 @@
 .btn--saveList{
   display:flex;
   flex-direction: row;
+}
+.welcomeBanner{
+  margin:10px;
 }

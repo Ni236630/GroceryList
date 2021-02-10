@@ -36,7 +36,7 @@ export const Navbar = ({ open }, { setOpen }) => {
   return (
     <>
       <div className="logout">
-        <h1> Welcome, {currentUser ? currentUser.name : "Friend"}</h1>
+        <h1 className="welcomeBanner"> Welcome, {currentUser ? currentUser.name : "Friend"}</h1>
         <div className="logout__container">
           Logout{" "}
           <div

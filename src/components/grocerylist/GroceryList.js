@@ -15,6 +15,8 @@ export const GroceryList = () => {
     getGroceryLists();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+
+
   return (
     <>
       <div className="GroceryList__container recipe">
@@ -22,7 +24,9 @@ export const GroceryList = () => {
         <h1>Your Grocery Lists:</h1>
         {/*adds button to direct to form to add new recipe*/}
         <ul>
-          {grocerylists.map((gl) => {
+          {
+           
+           grocerylists.map((gl) => {
             if (gl.usersId === activeUser) {
               return (
                 <li key={gl.id}>
@@ -30,9 +34,11 @@ export const GroceryList = () => {
                 </li>
               )
             } else {
-              return
+              return 
             }
-          })}
+          })
+            }
+          
         </ul>
       </div>
     </>

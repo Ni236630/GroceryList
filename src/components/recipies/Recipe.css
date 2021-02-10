@@ -27,3 +27,9 @@ textarea{
   display:flex;
   flex-direction: row;
 }
+.saveRecipe{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 25px;
+}

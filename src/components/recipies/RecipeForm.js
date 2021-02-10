@@ -6,6 +6,7 @@ import "./Recipe.css";
 import AddButton from "../icons/Add";
 import SubtractButton from "../icons/Subtract";
 import BackButton from "../icons/Back";
+import SaveButton from '../icons/Save'
 
 export const RecipeForm = () => {
  
@@ -167,16 +168,14 @@ export const RecipeForm = () => {
             />
           </div>
         </fieldset>
-        <button
-          className="btn btn-primary"
-          onClick={(event) => {
-            event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
-            handleSaveRecipe();
-          }}
-        >
-          Save Recipe
-        </button>
        
-    </div>
+        <div className="saveRecipe" onClick={(event) => {
+         event.preventDefault();
+         handleSaveRecipe()
+         
+        }}> Save Recipe
+          <SaveButton className="button--save" />
+        </div>
+        </div>
   );
 };
