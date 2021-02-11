@@ -47,7 +47,7 @@ export const RecipeDetail = () => {
   return (
     <section className="recipe">
       <div className="button__container--detail">
-        <div  onClick={() => history.push("/")}>
+        <div  onClick={() => history.push("/recipes")}>
            <BackButton className ="button--Back" />
           </div>
          <div onClick={() => {

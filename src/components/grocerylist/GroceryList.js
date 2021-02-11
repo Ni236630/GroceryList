@@ -3,7 +3,9 @@ import { GroceryListContext } from "./GroceryProvider";
 import { GroceryCard } from "./GroceryCard";
 import { useHistory } from "react-router-dom";
 import BackButton from "../icons/Back";
+import DeleteButton from "../icons/Delete";
 import "../recipies/Recipe.css";
+import './Grocery.css'
 
 export const GroceryList = () => {
   const { grocerylists, getGroceryLists, deleteGroceryList } = useContext(
@@ -32,15 +34,18 @@ export const GroceryList = () => {
             gList.map((i) => {
               return (
                 <li key={i.id}>
-                  <GroceryCard key={i.id} groceryList={i} />
-                  <button
-                    className="btn--deleteList"
-                    onClick={() => {
-                      deleteGroceryList(i.id);
-                    }}
-                  >
-                    delete
-                  </button>
+                  <div className="groceryName">
+                    <GroceryCard key={i.id} groceryList={i} />
+                    <div className="button__container--detail groceryDelete">
+                      <div
+                        onClick={() => {
+                          deleteGroceryList(i.id);
+                        }}
+                      >
+                        <DeleteButton className="button--delete" />
+                      </div>
+                    </div>
+                  </div>
                 </li>
               );
             })
