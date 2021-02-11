@@ -17,15 +17,21 @@ input {
 textarea{
   width: 100%
 }
+fieldset{
+  padding: 8px
+}
 
 .button__container{
-  height: 45px;
+  height: 20px;
+  width: 20px;
   
   
 }
 .add-subtract{
   display:flex;
   flex-direction: row;
+  width: 100%;
+
 }
 .saveRecipe{
   display: flex;

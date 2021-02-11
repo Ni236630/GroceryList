@@ -32,6 +32,7 @@ export const GroceryListApp = () =>{
             <div className='container__views'>
               
               <Navbar open={open} setOpen={setOpen} />
+             
             </div>
               <ApplicationViews open={open} setOpen={setOpen}/>
             </div>
