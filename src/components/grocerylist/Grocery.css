@@ -1,0 +1,8 @@
+.groceryName{
+  display:flex;
+  flex-direction: row;
+}
+.groceryDelete{
+ margin-top:35px;
+ margin-left: 20px;
+}

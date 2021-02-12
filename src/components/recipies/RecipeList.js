@@ -20,8 +20,11 @@ export const RecipeList = () => {
   return (
     <>
       <div className="recipeList__container recipe">
-        <div className="button__container--list" onClick={() => history.push("/")}>
-          <BackButton className="button--Back" />
+        <div className="button__container--list"  >
+          <div onClick={() => history.push("/")}>
+            <BackButton className="button--Back" />
+          </div>
+          
           <div
             className="button__container"
             onClick={() => history.push("/recipes/add")}
