@@ -42,7 +42,7 @@ export const RecipeList = () => {
           )
           .map((i) => (
             <RecipeCard key={i.id} recipe={i} />
-          ))}
+          )) }
       </div>
     </>
   );
