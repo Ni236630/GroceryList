@@ -39,15 +39,7 @@ export const GrocerySelectList = () => {
     setGroceryListName(values);
     
  
-  // const handleControlledInputChangeName = (index,event) => {
-     
-  //       const newGroceryListItem = groceryListName ;
-  //       if(event.target.id === "recipes"){
-  //         newGroceryListItem[index].name = event.target.value;
-  //       }
-
-  //       setGroceryListName(newGroceryListItem);
-  //     }
+  
    };
   
  
@@ -79,9 +71,15 @@ export const GrocerySelectList = () => {
       .then(history.push('/grocerylists'))
     }
   };
+  
+  const userRecipes = recipes
+  .filter(
+    (r) =>
+      r.usersId === activeUser
+  )
   return (
     <>
-   
+   { userRecipes.length !== 0 ? (
     
     <div className="recipe">
       <h1 className="grocerySelect--Title"> Make your selections below to start.</h1>
@@ -191,7 +189,10 @@ export const GrocerySelectList = () => {
         </div> 
       </div>
     </div>
-   
-    </>
+   ) :(<div className="recipe">
+    {" "}
+    <h3>Oops looks like you have no recipes. Add some to get started! </h3>
+  </div>)}
+   </>
   );
 };

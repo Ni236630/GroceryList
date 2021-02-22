@@ -95,6 +95,7 @@ export const RecipeForm = () => {
           <div className="form-group">
             <label htmlFor="name">Recipe Name </label>
             <input
+               autoComplete="off"
               type="text"
               id="name"
               onChange={handleControlledInputChange}
