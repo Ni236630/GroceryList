@@ -58,7 +58,7 @@ export const RecipeDetail = () => {
            
       </div>
      
-      <h3 className="recipe__name">{recipe.name}</h3>
+      <h2 className="recipe__name">{recipe.name}</h2>
       <h4>Ingredients:</h4>
       {
         ingredients.filter((i) => i.recipesId === recipe.id).sort((a, b) => a.name.localeCompare(b.name)).map((ing)=> <IngredientCard key={ing.id} ingredient={ing} />)

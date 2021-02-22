@@ -16,6 +16,12 @@ export const RecipeList = () => {
     getRecipes();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const userRecipes = recipes
+  .filter(
+    (r) =>
+      r.usersId === parseInt(localStorage.getItem("grocery_customer"))
+  )
+  
   //returning single object
   return (
     <>
@@ -35,14 +41,15 @@ export const RecipeList = () => {
         {/*adds button to direct to form to add new recipe
         replace with filter (look at how map works vs filter)*/}
 
-        {recipes
-          .filter(
-            (r) =>
-              r.usersId === parseInt(localStorage.getItem("grocery_customer"))
-          )
+        {userRecipes.length !== 0 ? (userRecipes
           .map((i) => (
             <RecipeCard key={i.id} recipe={i} />
-          ))}
+          ))):(
+            <div>
+              {" "}
+              <h3>Add some recipes to get started! </h3>
+            </div>
+          ) }
       </div>
     </>
   );
